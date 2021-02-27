@@ -4,9 +4,9 @@
 
      <router-view></router-view>
      <div class="d-flex justify-space-between mb-6">
-       <v-btn @click="userFormDialog=true" class="d-flex" color="success" style="margin-bottom: 10px" >
-        <v-icon>mdi-account</v-icon>
-        User profile
+       <v-btn @click="userFormDialog=true" class="d-flex" color="primary" style="margin-bottom: 10px" >
+        <v-icon class="mr-2">mdi-account-plus</v-icon>
+          User profile
       </v-btn>
         
       </div>
@@ -21,16 +21,7 @@
 </v-select>
        </v-flex>
      </v-layout>
-      </v-container>
-    
-     <!-- clearable use in v-select to show cancel button on right of v-select-->
-     
-       
-     
-     <!-- <v-text-field  placeholder="For email..." v-model="emailSearch"></v-text-field> -->
-      
-      
-   
+      </v-container>  
      <v-data-table
      
     :loading="dataTableLoading"
@@ -39,7 +30,7 @@
     :options.sync="options"
     :server-items-length="totalData"
     @click:row="dataShow"
-    :footer-props="{'items-per-page-options':[2,15, 30, 50, 100, -1]}"
+    :footer-props="{'items-per-page-options':[5,15, 30, 50, 100, -1]}"
 
   >
  
@@ -58,8 +49,8 @@
       </v-chip>
     </template>
   <template v-slot:item.actions="{ item }">
-  
-      <v-icon
+    <div @click.stop>
+ <v-icon
         small
         class="mr-2"
         @click="editItem(item,item.id)"
@@ -88,6 +79,9 @@
         
         
       </v-icon>
+    </div>
+  
+     
     </template>
   
   </v-data-table>
@@ -280,16 +274,11 @@ export default {
           return this.allData;
          },
          query(){
-           // return '?per_page=50&page=1' + '&gender='+ this.filterGender;
            return `?per_page=${this.options.itemsPerPage}&page=${this.options.page}` +
-           (this.filterGender ? '&gender=' + this.filterGender : '') //+ '&email=keya@test.com'; // Here jodi gilterGender a kono value thake tahole gender filter ta add hobe
+           (this.filterGender ? '&gender=' + this.filterGender : '')
 
          },
          
-    },
-    mounted: function(){
-    this.getData()
-    // this.pushData()
     },
     watch: {
       // eikhane query watch a thakar karon query te kicu change hoile e getData call hobe. watch use kora hoi kono property k watch korar jonno
@@ -343,12 +332,9 @@ export default {
            
      },
       getData(){
-        console.log(466464)
          this.dataTableLoading = true;
         this.$store.dispatch('saveData', this.query +  (this.search ? '&search=' + this.search : ''))
         .then(response=>{
-          
-          console.log(response)
           this.totalData = response.data.total
           
         })
@@ -373,7 +359,6 @@ export default {
         this.delsnackbar_Color = color
       },
       getColor(gender){
-        console.log(gender)
         if (gender != 'male') return 'red'
         else return 'green'
        
