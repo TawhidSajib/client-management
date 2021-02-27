@@ -5,15 +5,7 @@
     <div class="text-center">
       
   <v-progress-linear v-if="loading" color="primary" indeterminate></v-progress-linear>
-
-    <v-progress-circular
-      v-if="loading"
-      indeterminate
-      color="primary"
-    ></v-progress-circular>
-    
-  
-    </div>
+   </div>
    <v-row class="d-flex justify-space-around mb-6">
    
    <!-- {{query}} -->
