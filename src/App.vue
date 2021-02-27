@@ -21,6 +21,10 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title style="color:white">John Wick</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <router-link  to="/users/" style="margin-right: 5px;text-decoration: none;border: 1px solid black;padding: 10px;color: white">Users</router-link>
+      
+      <router-link  to="/users-card/" style="margin-left: 5px;text-decoration: none;border: 1px solid black;padding: 10px;color: white;">Users-card</router-link>
       
     </v-app-bar>
     <v-navigation-drawer
@@ -59,7 +63,10 @@
       <div class="text-center">
        <v-container fluid>
          <!-- <Axios></Axios> -->
-         <tryTable></tryTable>
+         <!-- <tryTable></tryTable> -->
+         <router-view></router-view>
+         
+
          <!-- <TryForm></TryForm> -->
          <!-- <test-vuex></test-vuex> -->
          <!-- <Name></Name>
@@ -88,7 +95,7 @@
 // import Table from './components/Table'
 // import TestVuex from '@/components/TestVuex'
 // import TryForm from '@/components/TryForm'
-import tryTable from '@/components/tryTable'
+// import tryTable from '@/components/tryTable'
 // import Axios from '@/components/Axios'
   
 
@@ -96,7 +103,7 @@ import tryTable from '@/components/tryTable'
   export default {
     components: {
       // Axios
-      tryTable
+      // tryTable
       // TestVuex
       //  TryForm
     //  Name,
